@@ -1,0 +1,14 @@
+## Interface: 120100
+## Version: 1.0
+## Title: Innervate Me Please
+## IconTexture: 136048
+## Notes: Enhancements for ability tooltips
+## Author: Harrek
+## SavedVariables: IMPLZ_DB
+## LoadSavedVariablesFirst: 1
+
+Libraries/LibStub.lua
+Libraries/LibAdvancedMenuBuilder.lua
+Libraries/CallbackHandler-1.0.lua
+Libraries/LibGetFrame-1.0.lua
+InnervateMePlease.lua
