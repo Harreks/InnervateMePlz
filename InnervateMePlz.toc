@@ -1,6 +1,6 @@
 ## Interface: 120100
 ## Version: 1.0
-## Title: Innervate Me Please
+## Title: Innervate Me Plz
 ## IconTexture: 136048
 ## Notes: Enhancements for ability tooltips
 ## Author: Harrek
@@ -11,4 +11,4 @@ Libraries/LibStub.lua
 Libraries/LibAdvancedMenuBuilder.lua
 Libraries/CallbackHandler-1.0.lua
 Libraries/LibGetFrame-1.0.lua
-InnervateMePlease.lua
+InnervateMePlz.lua

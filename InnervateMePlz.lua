@@ -174,7 +174,7 @@ local function AttachBordersToFrame(frame)
 end
 
 local LGF = LibStub('LibGetFrame-1.0')
-LGF.RegisterCallback('InnervateMePlease', 'GETFRAME_REFRESH', function()
+LGF.RegisterCallback('InnervateMePlz', 'GETFRAME_REFRESH', function()
     local frame = LGF.GetUnitFrame(targetUnitId)
     if frame then
         AttachBordersToFrame(frame)
