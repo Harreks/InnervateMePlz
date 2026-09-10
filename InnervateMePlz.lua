@@ -181,31 +181,39 @@ LGF.RegisterCallback('InnervateMePlz', 'GETFRAME_REFRESH', function()
     end
 end)
 
+local function GetUnitNameString(token)
+    local name, server = UnitFullName(token)
+    if name then
+        if server then
+            return name .. '-' .. server
+        elseif UnitRealmRelationship(token) == 1 then
+            local _, playerServer = UnitFullName('player')
+            return name .. '-' .. playerServer
+        end
+    else
+        return nil
+    end
+end
+
 local function UpdateTargetUnit()
     borderContainer:UnregisterAllEvents()
     targetUnitId = nil
     if IsInRaid() then
         for i = 1, 40 do
             local currentUnit = 'raid' .. i
-            local name, server = UnitFullName(currentUnit)
-                if name and server then
-                local fullName = name .. '-' .. server
-                if fullName == IMPLZ_DB.target then
-                    targetUnitId = currentUnit
-                    break
-                end
+            local fullName = GetUnitNameString(currentUnit)
+            if fullName and fullName == IMPLZ_DB.target then
+                targetUnitId = currentUnit
+                break
             end
         end
     elseif IsInGroup() then
         for i = 1, 4 do
             local currentUnit = 'party' .. i
-            local name, server = UnitFullName(currentUnit)
-            if name and server then
-                local fullName = name .. '-' .. server
-                if fullName == IMPLZ_DB.target then
-                    targetUnitId = currentUnit
-                    break
-                end
+            local fullName = GetUnitNameString(currentUnit)
+            if fullName and fullName == IMPLZ_DB.target then
+                targetUnitId = currentUnit
+                break
             end
         end
     end
@@ -241,9 +249,9 @@ SlashCmdList.IMPLZ = function(msg)
             if playerClass ~= 'DRUID' then
                 SendChatMessage('Addon only works for Druids')
             else
-                local name, server = UnitFullName('target')
-                if name and server then
-                    IMPLZ_DB.target = name .. '-' .. server
+                local fullName = GetUnitNameString('target')
+                if fullName then
+                    IMPLZ_DB.target = fullName
                     iconContainer.text:SetText('Innervate\n' .. IMPLZ_DB.target)
                     SendChatMessage('Your new innervate target is ' .. IMPLZ_DB.target)
                     UpdateTargetUnit()
